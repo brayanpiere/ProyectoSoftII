@@ -8,6 +8,7 @@ import dao.CursoDAO;
 import dao.DAOFactory;
 import dao.PublicacionDAO;
 import dao.RolDAO;
+import dao.TipoUsuarioDAO;
 import dao.TutoriaDAO;
 import dao.UsuarioDAO;
 
@@ -39,6 +40,11 @@ public class MongoDBFactory extends DAOFactory{
 
     @Override
     public PublicacionDAO createPublicacionDAO() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public TipoUsuarioDAO createTipoUsuarioDAO() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

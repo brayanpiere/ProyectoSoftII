@@ -5,7 +5,7 @@
 package controller;
 
 import dao.DAOFactory;
-import dao.UsuarioDAO;
+import dao.PublicacionDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,14 +13,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Usuario;
+import model.Publicacion;
 
 /**
  *
  * @author orope
  */
-@WebServlet(name = "usuarioServlet", urlPatterns = {"/usuarioServlet"})
-public class usuarioServlet extends HttpServlet {
+@WebServlet(name = "ServletPublicacion", urlPatterns = {"/ServletPublicacion"})
+public class ServletPublicacion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,23 +34,26 @@ public class usuarioServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("accion");
-        String direccion="";
-
+        String direccion = "";
+        System.out.println("hola esto es action" + action);
+        int x = (Integer.parseInt(String.valueOf(request.getSession().getAttribute("UsuarioCodigo"))));
         if (action.equalsIgnoreCase("Guardar")) {
-            String nombre = request.getParameter("nombre");
-            String apellido = request.getParameter("apellido");
-            String correo = request.getParameter("correo");
-            int tipo_estudiante = Integer.parseInt(request.getParameter("tipo-estudiante"));
-            Usuario u = new Usuario(nombre, apellido, correo, "", tipo_estudiante);
-            
-            int x= (Integer.parseInt(String.valueOf(request.getSession().getAttribute("UsuarioCodigo"))));
-            u.setId(x);
+            String titulo = request.getParameter("titulo");
+            String cuerpo = request.getParameter("cuerpo");
+            String fecha = request.getParameter("fecha");
+            int idCurso = Integer.parseInt(request.getParameter("idCurso"));
+            Publicacion p = new Publicacion(1, titulo, cuerpo, fecha, 1, idCurso, x);
             DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-            UsuarioDAO usuarioDao = factory.createUsuarioDAO();
-            usuarioDao.update(u);
-            direccion = "view/login.jsp";
+            PublicacionDAO publicacionDAO = factory.createPublicacionDAO();
+            publicacionDAO.save(p);
+            direccion = "view/PrincipalExperto.jsp";
+        } else if (action.equalsIgnoreCase("eliminar")) {
+            int eliminar = Integer.parseInt(request.getParameter("id"));
+            DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+            PublicacionDAO publicacionDAO = factory.createPublicacionDAO();
+            publicacionDAO.delete(eliminar);
+            direccion = "view/PrincipalExperto.jsp";
         }
-        
         response.sendRedirect(direccion);
     }
 

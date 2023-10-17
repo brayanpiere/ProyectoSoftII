@@ -57,14 +57,23 @@ public class PublicacionDAOImplMysql extends PublicacionDAO {
 
     @Override
     public void delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Connection conn = conexionMysql.getConexion();
+        PreparedStatement stmt;
+        String query = "DELETE FROM `tutobox`.`publicacion` WHERE (`idPublicacion` = ?);";
+        try {
+            stmt = conn.prepareStatement(query);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error: No se pudo actualizar el usuario\n" + e.getMessage());
+        }
     }
 
     @Override
     public List<Publicacion> obtenerPublicacionesPorUsuario(int idUsuario) {
         Connection conn = conexionMysql.getConexion();
         PreparedStatement ps;
-        String query = "SELECT *, documento, idCurso, idUsuario FROM tutobox.publicacion WHERE idUsuario = ?;";
+        String query = "SELECT * FROM tutobox.publicacion WHERE idUsuario = ?;";
 
         List<Publicacion> publicaciones = new ArrayList<>();
 
@@ -78,9 +87,9 @@ public class PublicacionDAOImplMysql extends PublicacionDAO {
                 String titulo = rs.getString(2);
                 String cuerpo = rs.getString(3);
                 String fecha = rs.getString(4);
-                int documento = rs.getInt(5);
+                //int documento = rs.getInt(5);
                 int idCurso = rs.getInt(6);
-                Publicacion p = new Publicacion(id, titulo, cuerpo, fecha, documento, idCurso, idUsuario);
+                Publicacion p = new Publicacion(id, titulo, cuerpo, fecha, 1, idCurso, idUsuario);
                 publicaciones.add(p);
             }
         } catch (SQLException e) {

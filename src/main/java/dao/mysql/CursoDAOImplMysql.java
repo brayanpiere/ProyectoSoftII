@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import model.Curso;
 
@@ -46,7 +47,24 @@ public class CursoDAOImplMysql extends CursoDAO {
 
     @Override
     public List<Curso> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Connection conn = conexionMysql.getConexion();
+        PreparedStatement stmt;
+        String query = "SELECT * FROM tutobox.curso;";
+        List<Curso> cursos = new ArrayList();
+        try {
+            stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String descripcion = rs.getString(2);
+                Curso curso = new Curso(id, descripcion);
+                cursos.add(curso);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error: No se pudo actualizar el usuario\n" + e.getMessage());
+        }
+        return cursos;
     }
 
     @Override

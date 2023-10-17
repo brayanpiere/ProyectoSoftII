@@ -46,10 +46,10 @@
                     &nbsp;
                     <center>
                         <div class="col-12">
-                            <button class="btn btn-primary" onclick="redireccionar('CrearPublicacionJsp.jsp')">Crear Publicacion</button>
+                            <button class="btn btn-primary" onclick="redireccionar('CrearPublicacion.jsp')">Crear Publicacion</button>
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary" onclick="redireccionar('RevisarMensajesJsp.jsp')">Revisar mensajes</button>
+                            <button class="btn btn-primary" onclick="redireccionar('editarPerfil.jsp')">Editar Perfil</button>
                         </div>
                         <div class="col-12">
                             <button class="btn btn-primary" onclick="redireccionar('CrearTutoriaJsp.jsp')">Crear Tutorias</button>
@@ -57,10 +57,15 @@
                     </center>
                 </div>
                 <div class="col-10">
+                    <<h1>Publicaciones</h1>>
                     <%
+
+                        int x = Integer.parseInt(String.valueOf(session.getAttribute("UsuarioCodigo")));
+                        System.out.println("idUsuario0" + x);
                         DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
                         PublicacionDAO publicacionDAO = factory.createPublicacionDAO();
-                        List<Publicacion> publicaciones = publicacionDAO.obtenerPublicacionesPorUsuario(1);
+
+                        List<Publicacion> publicaciones = publicacionDAO.obtenerPublicacionesPorUsuario(x);
                         request.setAttribute("publicaciones", publicaciones);
 
                         DAOFactory factory2 = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
@@ -71,11 +76,11 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Documento</th>
-                                    <th>Publicacion</th>
-                                    <th>Descripcion</th>
-                                    <th>Tipo de Curso</th>
+                                    <th>Titulo</th>
+                                    <th>Cuerpo</th>
+                                    <th>Nombre Curso</th>
                                     <th>Fecha de Publicacion</th>
+                                    <th>Documento</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
@@ -86,7 +91,10 @@
                                     <td><%= publicacion.getCuerpo()%></td>
                                     <td><%= cursoDAO.NombreCurso(publicacion.getIdCurso())%></td>
                                     <td><%= publicacion.getFecha()%></td>
-                                    <td><a class="btn btn btn-secondary btn_add_tutoria" href="PublicacionExpertoServlet?accion=eliminar&id=<%= publicacion.getIdPublicacion()%>" role="button">Eliminar</a></td>
+                                    <td></td>
+                                    <td>
+                                        <a class="btn btn btn-secondary btn_add_tutoria" href="../ServletPublicacion?accion=eliminar&id=<%= publicacion.getIdPublicacion()%>" role="button">Eliminar</a>
+                                    </td>
                                 </tr>
                                 <% }%>
                             </tbody>

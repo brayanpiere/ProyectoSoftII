@@ -8,6 +8,7 @@ import dao.CursoDAO;
 import dao.DAOFactory;
 import dao.PublicacionDAO;
 import dao.RolDAO;
+import dao.TipoUsuarioDAO;
 import dao.TutoriaDAO;
 import dao.UsuarioDAO;
 
@@ -40,6 +41,11 @@ public class MySqlFactory extends DAOFactory {
     @Override
     public PublicacionDAO createPublicacionDAO() {
         return new PublicacionDAOImplMysql();
+    }
+
+    @Override
+    public TipoUsuarioDAO createTipoUsuarioDAO() {
+        return new TipoUsuarioDAOImplMysql();
     }
 
 }

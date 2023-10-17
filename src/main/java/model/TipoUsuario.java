@@ -8,22 +8,22 @@ package model;
  *
  * @author orope
  */
-public class Curso {
-    
-    private int idCurso;
+public class TipoUsuario {
+
+    private int idTipoUsuario;
     private String descripcion;
 
-    public Curso(int idCurso, String descripcion) {
-        this.idCurso = idCurso;
+    public TipoUsuario(int idTipoUsuario, String descripcion) {
+        this.idTipoUsuario = idTipoUsuario;
         this.descripcion = descripcion;
     }
 
-    public int getIdCurso() {
-        return idCurso;
+    public int getIdTipoUsuario() {
+        return idTipoUsuario;
     }
 
-    public void setIdCurso(int idCurso) {
-        this.idCurso = idCurso;
+    public void setIdTipoUsuario(int idTipoUsuario) {
+        this.idTipoUsuario = idTipoUsuario;
     }
 
     public String getDescripcion() {
@@ -33,7 +33,5 @@ public class Curso {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    
-    
+
 }
