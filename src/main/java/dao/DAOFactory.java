@@ -30,5 +30,11 @@ public abstract class DAOFactory {
     public abstract UsuarioDAO createUsuarioDAO();
 
     public abstract RolDAO createRolDAO();
+    
+    public abstract TutoriaDAO createTutoriaDAO();
+    
+    public abstract CursoDAO createCursoDAO();
+    
+    public abstract PublicacionDAO createPublicacionDAO();
 
 }

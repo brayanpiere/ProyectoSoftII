@@ -4,30 +4,20 @@
  */
 package controller;
 
-import dao.DAOFactory;
-import dao.UsuarioDAO;
-import dao.mysql.UsuarioDAOImplMysql;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Usuario;
-
 
 /**
  *
  * @author orope
  */
-@WebServlet(name = "ServletInicioSesion", urlPatterns = {"/ServletInicioSesion"})
-public class ServletInicioSesion extends HttpServlet {
+@WebServlet(name = "usuarioServlet", urlPatterns = {"/usuarioServlet"})
+public class usuarioServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,43 +30,19 @@ public class ServletInicioSesion extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Variables
-        String correo = request.getParameter("correo");
-        String clave = request.getParameter("clave");
-        String direccion = "errorLogUsuario.html";
-
-        // Activamos la sesión
-        HttpSession sesion = request.getSession();
-        if (sesion.isNew()) {
-            sesion = request.getSession(true);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet usuarioServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet usuarioServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-
-        DAOFactory factory=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-        UsuarioDAO usuarioDao=factory.createUsuarioDAO();
-        
-        System.out.println(correo);
-        System.out.println(clave);
-
-        Usuario usuario = usuarioDao.autentificar(correo, clave);
-
-        if (usuario != null) {
-            // Guardamos los datos del cliente en variables de sesión
-            sesion.setAttribute("UsuarioCodigo", usuario.getId());
-            sesion.setAttribute("UsuarioNombre", usuario.getNombres());
-            sesion.setAttribute("UsuarioApellido", usuario.getApellidos());
-            sesion.setAttribute("idCursoAux", -1);
-            sesion.setAttribute("idExpertoAux", -1);
-            // Obtener el rol del usuario
-            if (usuario.getIdTipo()==1) {
-                direccion = "view/PrincipalUsuario.jsp";
-            } else if (usuario.getIdTipo()==2) {
-                direccion = "view/PrincipalExperto.jsp";
-            }
-        }
-
-        // Redirigir a la dirección correspondiente
-        response.sendRedirect(direccion);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

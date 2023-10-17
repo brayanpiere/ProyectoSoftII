@@ -4,15 +4,18 @@
  */
 package dao.mysql;
 
+import dao.CursoDAO;
 import dao.DAOFactory;
+import dao.PublicacionDAO;
 import dao.RolDAO;
+import dao.TutoriaDAO;
 import dao.UsuarioDAO;
 
 /**
  *
  * @author orope
  */
-public class MySqlFactory extends DAOFactory{
+public class MySqlFactory extends DAOFactory {
 
     @Override
     public UsuarioDAO createUsuarioDAO() {
@@ -23,5 +26,20 @@ public class MySqlFactory extends DAOFactory{
     public RolDAO createRolDAO() {
         return new RolDAOImplMysql();
     }
-    
+
+    @Override
+    public TutoriaDAO createTutoriaDAO() {
+        return new TutoriaDAOImplMysql();
+    }
+
+    @Override
+    public CursoDAO createCursoDAO() {
+        return new CursoDAOImplMysql();
+    }
+
+    @Override
+    public PublicacionDAO createPublicacionDAO() {
+        return new PublicacionDAOImplMysql();
+    }
+
 }

@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Usuario;
 
 /**
@@ -24,7 +26,7 @@ public class UsuarioDAOImplMysql extends UsuarioDAO {
 
     @Override
     public List<String> obtenerNombreRolesUsuario(int usuarioId) {
-        Connection conn=conexionMysql.getConexion();
+        Connection conn = conexionMysql.getConexion();
         List<String> roles = new ArrayList<>();;
         try {
             String sql = "SELECT t.descripcion FROM tipousuario t JOIN usuario u ON t.idTipousuario = u.idTipo WHERE u.idUsuario = ?";
@@ -50,7 +52,6 @@ public class UsuarioDAOImplMysql extends UsuarioDAO {
 
     @Override
     public void save(Usuario entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
@@ -84,8 +85,7 @@ public class UsuarioDAOImplMysql extends UsuarioDAO {
                 c.setIdTipo(rs.getInt("idTipo"));
                 lista.add(c);
             }
-            rs.close();
-            ps.close();
+
             //Conexion.cerrarConexion(cn);
         } catch (SQLException e) {
             System.out.println("Error: No se pudo traer la lista de usuarios\n" + e.getMessage());
@@ -98,6 +98,58 @@ public class UsuarioDAOImplMysql extends UsuarioDAO {
     @Override
     public void delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Usuario autentificar(String correo, String password) {
+        Usuario u = null;
+        try {
+            Connection cn = conexionMysql.getConexion();
+            String sql = "select * from tutobox.usuario where correo=? and contrasena=?;";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, correo);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                u = new Usuario();
+                u.setId(rs.getInt(1));
+                u.setNombres(rs.getString(2));
+                u.setApellidos(rs.getString(3));
+                u.setEmail(rs.getString(4));
+                u.setPassword(rs.getString(5));
+                u.setIdTipo(rs.getInt(6));
+            }
+            return u;
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+        return u;
+    }
+
+    @Override
+    public String obtenerNombrePorUsuarioId(int idUsuario) {
+        Connection conn = conexionMysql.getConexion();
+        PreparedStatement ps;
+        String query = "SELECT nombre, apellidos FROM tutobox.usuario WHERE idUsuario = ?;";
+
+        String nombreApellido = "";
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, idUsuario);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String Nombre = rs.getString("nombre");
+                String Apellido = rs.getString("apellidos");
+                nombreApellido = Nombre + " " + Apellido;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: No se pudo obtener el nombre y apellido del usuario\n" + e.getMessage());
+        }
+
+        return nombreApellido;
     }
 
 }

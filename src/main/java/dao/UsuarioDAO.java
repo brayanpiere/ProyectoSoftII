@@ -14,4 +14,8 @@ import model.Usuario;
 public abstract class UsuarioDAO implements CRUD<Usuario>{
 
     public abstract List<String> obtenerNombreRolesUsuario(int usuarioId);
+    
+    public abstract Usuario autentificar(String correo, String password);
+    
+    public abstract String obtenerNombrePorUsuarioId(int idUsuario);
 }
