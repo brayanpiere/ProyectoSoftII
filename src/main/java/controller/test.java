@@ -7,11 +7,13 @@ package controller;
 import dao.CursoDAO;
 import dao.DAOFactory;
 import dao.PublicacionDAO;
+import dao.TipoUsuarioDAO;
 import dao.TutoriaDAO;
 import dao.UsuarioDAO;
 import dao.mysql.UsuarioDAOImplMysql;
 import java.util.List;
 import model.Publicacion;
+import model.TipoUsuario;
 import model.Tutoria;
 import model.Usuario;
 
@@ -23,16 +25,16 @@ public class test {
     
     public static void main(String args[]){
 //        System.out.println("hola");
-        List<Publicacion> lista = null;
+        List<TipoUsuario> lista = null;
 
         DAOFactory factory=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-        PublicacionDAO publicacionDAO=factory.createPublicacionDAO();
+        TipoUsuarioDAO tipoUsuarioDAO=factory.createTipoUsuarioDAO();
 //        String nombre=cursoDAO.NombreCurso(1);
 //        System.out.println("holaaaaaaaaaa" + nombre);
-        lista=publicacionDAO.obtenerPublicacionesPorUsuario(6);
+        lista=tipoUsuarioDAO.findAll();
         
         for (int i = 0; i < lista.size(); i++) {
-            System.out.println(lista.get(i).getCuerpo());
+            System.out.println(lista.get(i).getDescripcion());
         }
         
 //        Usuario u=usuarioDao.autentificar("juan@example.com", "123456");

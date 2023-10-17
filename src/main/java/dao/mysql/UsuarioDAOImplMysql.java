@@ -52,6 +52,21 @@ public class UsuarioDAOImplMysql extends UsuarioDAO {
 
     @Override
     public void save(Usuario entity) {
+
+        Connection conn = conexionMysql.getConexion();
+        PreparedStatement stmt;
+        String query = "INSERT INTO `tutobox`.`usuario` (`nombre`, `apellidos`, `correo`, `contrasena`, `idTipo`) VALUES (?, ?, ?, ?, ?);";
+        try {
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, entity.getNombres());
+            stmt.setString(2, entity.getApellidos());
+            stmt.setString(3, entity.getEmail());
+            stmt.setString(4, entity.getPassword());
+            stmt.setInt(5, entity.getIdTipo());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error: No se pudo actualizar el usuario\n" + e.getMessage());
+        }
     }
 
     @Override

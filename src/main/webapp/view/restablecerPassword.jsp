@@ -1,31 +1,18 @@
 <%-- 
-    Document   : CreacionCuenta
-    Created on : 17 oct. 2023, 08:50:12
+    Document   : restablecerPassword
+    Created on : 17 oct. 2023, 14:17:14
     Author     : orope
 --%>
 
-<%@page import="dao.DAOFactory"%>
-<%@page import="dao.TipoUsuarioDAO"%>
-<%@page import="model.TipoUsuario"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>:::Registro del Sistema:::</title>
-        <link rel="stylesheet" href="../Recursos/Bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../Recursos/CSSPropio/newcss.css"/>
-        <script src="../Recursos/Bootstrap/js/bootstrap.min.js"></script>
-        <script src="../Recursos/JsPropio/ValidaJS.js"></script>
-
-
+        <meta charset="UTF-8">
+        <title>Registro de Cuenta</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <style>
-            .center-container {
-                margin-top: 90px; /* Mueve el div 20 píxeles hacia abajo */
-
-            }
             .centrado-vertical {
                 display: flex;
                 justify-content: center;

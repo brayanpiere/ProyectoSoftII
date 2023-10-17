@@ -49,6 +49,18 @@ public class usuarioServlet extends HttpServlet {
             UsuarioDAO usuarioDao = factory.createUsuarioDAO();
             usuarioDao.update(u);
             direccion = "view/login.jsp";
+        }else if (action.equalsIgnoreCase("Agregar")){
+            String nombre = request.getParameter("nombre");
+            String apellido = request.getParameter("apellido");
+            String correo = request.getParameter("correo");
+            String clave = request.getParameter("clave");
+            int tipo_estudiante = Integer.parseInt(request.getParameter("idTipoUsuario"));
+            Usuario u = new Usuario(nombre, apellido, correo, clave, tipo_estudiante);
+           
+            DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+            UsuarioDAO usuarioDao = factory.createUsuarioDAO();
+            usuarioDao.save(u);
+            direccion = "view/login.jsp";
         }
         
         response.sendRedirect(direccion);

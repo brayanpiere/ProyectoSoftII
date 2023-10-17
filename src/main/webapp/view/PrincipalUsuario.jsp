@@ -56,7 +56,7 @@
                             <button class="btn btn-primary" onclick="redireccionar('RankingTutores.jsp')">Ranking Tutores</button>
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary" onclick="redireccionar('ReporteTutoriasJsp.jsp')">Reporte Tutorias</button>
+                            <button class="btn btn-primary" onclick="redireccionar('editarPerfil.jsp')">Editar Perfil</button>
                         </div>
                     </center>
                 </div>
@@ -114,7 +114,7 @@
         </div>
 
         <div class="footer">
-            <strong>Universidad de Lima - Grupo 5</strong>
+            <strong>Universidad de Lima - Grupo 2</strong>
         </div>
     </body>
 </html>

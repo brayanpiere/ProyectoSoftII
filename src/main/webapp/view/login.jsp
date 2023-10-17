@@ -45,7 +45,7 @@
                         </div>
                         
                         <div class="form-group">
-                            <a href="registroUsuario.jsp">Registrarse.....</a>
+                            <a href="CreacionCuenta.jsp">Registrarse.....</a>
                         </div>
     
                         <div class="form-group">
@@ -62,7 +62,7 @@
     </div>
 
     <div class="footer">
-        <strong>Universidad de Lima - Grupo 5</strong>
+        <strong>Universidad de Lima - Grupo 2</strong>
     </div>
 
     
