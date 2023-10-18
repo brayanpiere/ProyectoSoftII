@@ -18,4 +18,6 @@ public abstract class UsuarioDAO implements CRUD<Usuario>{
     public abstract Usuario autentificar(String correo, String password);
     
     public abstract String obtenerNombrePorUsuarioId(int idUsuario);
+    
+    public abstract void updatePassword(String passwordActual, int id);
 }

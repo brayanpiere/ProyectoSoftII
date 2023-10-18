@@ -17,10 +17,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>:::Bienvenido al Sistema:::</title>
 
-        <link rel="stylesheet" href="../Recursos/Bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../Recursos/CSSPropio/newcss.css"/>
-        <script src="../Recursos/Bootstrap/js/bootstrap.min.js"></script>
-        <script src="../Recursos/JsPropio/ValidaJS.js"></script>
+        <link rel="stylesheet" href="Recursos/Bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="Recursos/CSSPropio/newcss.css"/>
+        <script src="Recursos/Bootstrap/js/bootstrap.min.js"></script>
+        <script src="Recursos/JsPropio/ValidaJS.js"></script>
 
         <style>
             .card {
@@ -49,14 +49,17 @@
 
                     &nbsp;
                     <center>
-                        <div class="col-12">
-                            <button class="btn btn-primary" onclick="redireccionar('ConsultarExpertoJsp.jsp')">Consultar Experto</button>
+                        <div class="col-12">view/
+                            <button class="btn btn-primary" onclick="redireccionar('view/PerfilExperto.jsp')">Consultar Experto</button>
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary" onclick="redireccionar('RankingTutores.jsp')">Ranking Tutores</button>
+                            <button class="btn btn-primary" onclick="redireccionar('view/PerfilExperto.jsp')">Ranking Tutores</button>
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary" onclick="redireccionar('editarPerfil.jsp')">Editar Perfil</button>
+                            <button class="btn btn-primary" onclick="redireccionar('view/editarPerfil.jsp')">Editar Perfil</button>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" onclick="redireccionar('view/restablecerPassword.jsp')">Actualizar Contraseña</button>
                         </div>
                     </center>
                 </div>

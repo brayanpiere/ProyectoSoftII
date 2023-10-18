@@ -6,6 +6,7 @@ package dao.mongodb;
 
 import dao.CursoDAO;
 import dao.DAOFactory;
+import dao.MensajeDAO;
 import dao.PublicacionDAO;
 import dao.RolDAO;
 import dao.TipoUsuarioDAO;
@@ -45,6 +46,11 @@ public class MongoDBFactory extends DAOFactory{
 
     @Override
     public TipoUsuarioDAO createTipoUsuarioDAO() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public MensajeDAO createMensajeDAO() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

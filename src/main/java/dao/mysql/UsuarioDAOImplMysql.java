@@ -182,4 +182,19 @@ public class UsuarioDAOImplMysql extends UsuarioDAO {
         return nombreApellido;
     }
 
+    @Override
+    public void updatePassword(String passwordActual, int idUsuario) {
+        Connection conn = conexionMysql.getConexion();
+        PreparedStatement ps;
+        String query = "UPDATE `tutobox`.`usuario` SET `contrasena` = ? WHERE (`idUsuario` = ?);";
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, passwordActual);
+            ps.setInt(2, idUsuario);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error: No se pudo actualizar el usuario\n" + e.getMessage());
+        }
+    }
+
 }

@@ -6,6 +6,7 @@ package dao.mysql;
 
 import dao.CursoDAO;
 import dao.DAOFactory;
+import dao.MensajeDAO;
 import dao.PublicacionDAO;
 import dao.RolDAO;
 import dao.TipoUsuarioDAO;
@@ -46,6 +47,11 @@ public class MySqlFactory extends DAOFactory {
     @Override
     public TipoUsuarioDAO createTipoUsuarioDAO() {
         return new TipoUsuarioDAOImplMysql();
+    }
+
+    @Override
+    public MensajeDAO createMensajeDAO() {
+        return new MensajeDAOImplMysql();
     }
 
 }

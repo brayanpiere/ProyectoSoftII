@@ -5,7 +5,7 @@
 package controller;
 
 import dao.DAOFactory;
-import dao.UsuarioDAO;
+import dao.MensajeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,14 +13,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Usuario;
+import model.Mensaje;
 
 /**
  *
  * @author orope
  */
-@WebServlet(name = "usuarioServlet", urlPatterns = {"/usuarioServlet"})
-public class usuarioServlet extends HttpServlet {
+@WebServlet(name = "MensajeServlet", urlPatterns = {"/MensajeServlet"})
+public class MensajeServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,41 +35,19 @@ public class usuarioServlet extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("accion");
         String direccion="";
-
-        if (action.equalsIgnoreCase("Guardar")) {
-            String nombre = request.getParameter("nombre");
-            String apellido = request.getParameter("apellido");
-            String correo = request.getParameter("correo");
-            int tipo_estudiante = Integer.parseInt(request.getParameter("tipo-estudiante"));
-            Usuario u = new Usuario(nombre, apellido, correo, "", tipo_estudiante);
+        System.out.println("heloooooooooooooooooooooooooooooooooooooooo");
+        if (action.equalsIgnoreCase("Agregar")) {
             
-            int x= (Integer.parseInt(String.valueOf(request.getSession().getAttribute("UsuarioCodigo"))));
-            u.setId(x);
+            System.out.println("holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            String m = request.getParameter("mensaje");
+            int x = (Integer.parseInt(String.valueOf(request.getSession().getAttribute("UsuarioCodigo"))));
+            Mensaje mensaje = new Mensaje(0, "", m, "2020-01-01", x, 8);
+//
             DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-            UsuarioDAO usuarioDao = factory.createUsuarioDAO();
-            usuarioDao.update(u);
-            direccion = "view/login.jsp";
-        }else if (action.equalsIgnoreCase("Agregar")){
-            String nombre = request.getParameter("nombre");
-            String apellido = request.getParameter("apellido");
-            String correo = request.getParameter("correo");
-            String clave = request.getParameter("clave");
-            int tipo_estudiante = Integer.parseInt(request.getParameter("idTipoUsuario"));
-            Usuario u = new Usuario(nombre, apellido, correo, clave, tipo_estudiante);
-           
-            DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-            UsuarioDAO usuarioDao = factory.createUsuarioDAO();
-            usuarioDao.save(u);
-            direccion = "view/login.jsp";
-        }else if (action.equalsIgnoreCase("UpdatePass")){
-            String clave = request.getParameter("passNueva");
-            DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-            UsuarioDAO usuarioDao = factory.createUsuarioDAO();
-            int x= (Integer.parseInt(String.valueOf(request.getSession().getAttribute("UsuarioCodigo"))));
-            usuarioDao.updatePassword(clave, x);
-            direccion = "view/login.jsp";
+            MensajeDAO mensajeDAO = factory.createMensajeDAO();
+            mensajeDAO.save(mensaje);
+            direccion = "view/PerfilExperto.jsp";
         }
-        
         response.sendRedirect(direccion);
     }
 

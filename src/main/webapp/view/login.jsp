@@ -49,7 +49,7 @@
                         </div>
     
                         <div class="form-group">
-                            <a href="reestablecer-contras.jsp">Restablecer Contraseña.....</a>
+                            <a href="restablecerPassword.jsp">Restablecer Contraseña.....</a>
                         </div>
                         
                         <div class="form-group">

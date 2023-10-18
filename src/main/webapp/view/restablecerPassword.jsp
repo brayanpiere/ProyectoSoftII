@@ -5,14 +5,22 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title>Registro de Cuenta</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>:::Registro del Sistema:::</title>
+        <link rel="stylesheet" href="../Recursos/Bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../Recursos/CSSPropio/newcss.css"/>
+        <script src="../Recursos/Bootstrap/js/bootstrap.min.js"></script>
+        <script src="../Recursos/JsPropio/ValidaJS.js"></script>
+
+
         <style>
+            .center-container {
+                margin-top: 90px; /* Mueve el div 20 píxeles hacia abajo */
+
+            }
             .centrado-vertical {
                 display: flex;
                 justify-content: center;
@@ -22,13 +30,6 @@
         </style>
     </head>
     <body>
-        <%
-            List<TipoUsuario> tiposUsuario = new ArrayList<>();
-
-            DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-            TipoUsuarioDAO tipoUsuarioDAO = factory.createTipoUsuarioDAO();
-            tiposUsuario = tipoUsuarioDAO.findAll();
-        %>
         <div class="header">
             <strong>Seguridad del Sistema</strong>
         </div>
@@ -38,46 +39,26 @@
             <div class="row centrado-vertical">
                 <div class="col-md-6 text-center">
                     <!-- Columna de la imagen -->
-                    <img src="../Recursos/img/usuario_nuevo.png" alt="Imagen de la persona" class="img-fluid">
+                    <img src="../Recursos/img/reset_pass.png" alt="Imagen de la persona" class="img-fluid">
                 </div>
                 <div class="col-md-6">
                     <!-- Columna del formulario de creación de cuenta -->
-                    <h2>Registro de Cuenta</h2>
+                    <h2>Actualizar Contraseña</h2>
+
                     <form name="formulario" method="post" id="formulario" action="../usuarioServlet">
                         <div class="form-group">
-                            <label for="nombres">Nombres:</label>
-                            <input type="text" placeholder="Nombres" name="nombre" id="nombres" class="form-control">
+                            <label for="contrasena-actual">Contraseña Actual:</label>
+                            <input type="password" class="form-control" id="contrasena-actual" name="passActual" placeholder="Ingresa tu contraseña actual">
                         </div>
                         <div class="form-group">
-                            <label for="apellidos">Apellidos</label>
-                            <input type="text" placeholder="Apellidos" name="apellido" id="apellidos" class="form-control">
+                            <label for="contrasena-nueva">Contraseña Nueva:</label>
+                            <input type="password" class="form-control" id="contrasena-nueva" name="passNueva" placeholder="Ingresa tu contraseña nueva">
                         </div>
                         <div class="form-group">
-                            <label for="correo">Correo:</label>
-                            <input type="text" placeholder="Correo" name="correo" id="correo" class="form-control">
+                            <label for="confirmar-contrasena-nueva">Confirmar Contraseña Nueva:</label>
+                            <input type="password" class="form-control" id="confirmar-contrasena-nueva" name="passNueva" placeholder="Confirma tu contraseña nueva">
                         </div>
-                        <div class="form-group">
-                            <label for="clave">Contraseña:</label>
-                            <input type="password" placeholder="Contraseña" name="clave" id="clave" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="rol">Rol:</label><br>
-                            <select class="form-control" name="idTipoUsuario" id="">
-                                <option value="-1">Seleccione Tipo</option>
-                                <%                                        for (TipoUsuario c : tiposUsuario) {
-                                %>
-                                <option value="<%= c.getIdTipoUsuario()%>"><%= c.getDescripcion()%></option>
-                                <%
-                                    }
-                                %>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary w-100" type="submit" name="accion" value="Agregar">Agregar</button>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary w-100" type="submit" name="accion" value="Volver">Volver</button>
-                        </div>
+                        <button class="btn btn-primary w-100" type="submit" name="accion" value="UpdatePass">Actualizar</button>
                     </form>
                 </div>
             </div>

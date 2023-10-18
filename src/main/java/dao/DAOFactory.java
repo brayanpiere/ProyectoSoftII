@@ -38,5 +38,7 @@ public abstract class DAOFactory {
     public abstract PublicacionDAO createPublicacionDAO();
     
     public abstract TipoUsuarioDAO createTipoUsuarioDAO();
+    
+    public abstract MensajeDAO createMensajeDAO();
 
 }
