@@ -4,6 +4,7 @@
  */
 package dao;
 
+<<<<<<< HEAD
 import model.Mensaje;
 /**
  *
@@ -11,4 +12,18 @@ import model.Mensaje;
  */
 public abstract class MensajeDAO implements CRUD<Mensaje>{
     
+=======
+import java.util.List;
+import model.Mensaje;
+
+/**
+ *
+ * @author orope
+ */
+public abstract class MensajeDAO implements CRUD<Mensaje>{
+    
+    public abstract List<Mensaje> getMensajesXExperto(int idExperto);
+    
+    public abstract String getNombreEmisor(int idEmisor);
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
 }

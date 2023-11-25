@@ -6,7 +6,11 @@ package model;
 
 /**
  *
+<<<<<<< HEAD
  * @author chibo
+=======
+ * @author orope
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
  */
 public class Tutoria {
 

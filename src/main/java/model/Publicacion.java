@@ -4,12 +4,17 @@
  */
 package model;
 
+<<<<<<< HEAD
 /**
  *
  * @author chibo
  */
 public class Publicacion {
     private int id;
+=======
+public class Publicacion {
+    private int idPublicacion;
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
     private String titulo;
     private String cuerpo;
     private String fecha;
@@ -17,14 +22,20 @@ public class Publicacion {
     private int idCurso;
     private int idUsuario;
 
+<<<<<<< HEAD
     public Publicacion(int id, String titulo, String cuerpo, String fecha, int documento, int idCurso, int idUsuario) {
         this.id = id;
+=======
+    public Publicacion(int idPublicacion, String titulo, String cuerpo, String fecha, int documento, int idCurso, int idUsuario) {
+        this.idPublicacion = idPublicacion;
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
         this.titulo = titulo;
         this.cuerpo = cuerpo;
         this.fecha = fecha;
         this.documento = documento;
         this.idCurso = idCurso;
         this.idUsuario = idUsuario;
+<<<<<<< HEAD
     }    
 
     public int getId() {
@@ -33,6 +44,16 @@ public class Publicacion {
 
     public void setId(int id) {
         this.id = id;
+=======
+    }
+
+    public int getIdPublicacion() {
+        return idPublicacion;
+    }
+
+    public void setIdPublicacion(int idPublicacion) {
+        this.idPublicacion = idPublicacion;
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
     }
 
     public String getTitulo() {
@@ -83,4 +104,10 @@ public class Publicacion {
         this.idUsuario = idUsuario;
     }
 
+<<<<<<< HEAD
+=======
+    
+    
+
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
 }

@@ -33,8 +33,20 @@ public abstract class DAOFactory {
 
     public abstract RolDAO createRolDAO();
     
+<<<<<<< HEAD
     public abstract MensajeDAO createMensajeDAO();
 
     public abstract TutoriaDAO createTutoriaDAO();
+=======
+    public abstract TutoriaDAO createTutoriaDAO();
+    
+    public abstract CursoDAO createCursoDAO();
+    
+    public abstract PublicacionDAO createPublicacionDAO();
+    
+    public abstract TipoUsuarioDAO createTipoUsuarioDAO();
+    
+    public abstract MensajeDAO createMensajeDAO();
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
 
 }

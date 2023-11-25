@@ -9,9 +9,18 @@ import model.Tutoria;
 
 /**
  *
+<<<<<<< HEAD
  * @author chibo
  */
 public abstract class TutoriaDAO implements CRUD<Tutoria>{
     
     public abstract List<Tutoria> obtenerTutoriasPorEstudiante(int idEstudiante);
+=======
+ * @author orope
+ */
+public abstract class TutoriaDAO implements CRUD<Tutoria>{
+    
+    public abstract List<Tutoria> obtenerListaTutoriasXEstudiante(int idEstudiante);
+    
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
 }

@@ -16,6 +16,7 @@ import model.Tutoria;
 
 /**
  *
+<<<<<<< HEAD
  * @author chibo
  */
 public class TutoriaDAOImplMysql extends TutoriaDAO {
@@ -24,6 +25,41 @@ public class TutoriaDAOImplMysql extends TutoriaDAO {
 
     @Override
     public List<Tutoria> obtenerTutoriasPorEstudiante(int idEstudiante) {
+=======
+ * @author orope
+ */
+public class TutoriaDAOImplMysql extends TutoriaDAO{
+
+    Conexion conexionMysql = ConexionMysql.obtenerInstancia();
+    
+    @Override
+    public Tutoria findById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Tutoria> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void save(Tutoria entity) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void update(Tutoria entity) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void delete(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Tutoria> obtenerListaTutoriasXEstudiante(int idEstudiante) {
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
         Connection conn = conexionMysql.getConexion();
         PreparedStatement ps;
         String query = "SELECT * FROM tutobox.tutoria WHERE idEstudiante = ?";
@@ -54,15 +90,19 @@ public class TutoriaDAOImplMysql extends TutoriaDAO {
                 tutorias.add(p);
             }
 
+<<<<<<< HEAD
             rs.close();
             ps.close();
             conn.close();
+=======
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
         } catch (SQLException e) {
             System.out.println("Error: No se pudieron obtener las tutorias del estudiante\n" + e.getMessage());
         }
 
         return tutorias;
     }
+<<<<<<< HEAD
 
     @Override
     public Tutoria findById(int id) {
@@ -89,4 +129,7 @@ public class TutoriaDAOImplMysql extends TutoriaDAO {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+=======
+    
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
 }

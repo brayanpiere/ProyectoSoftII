@@ -5,22 +5,29 @@
 package controller;
 
 import dao.DAOFactory;
+import dao.PublicacionDAO;
+import dao.TutoriaDAO;
 import dao.UsuarioDAO;
+import dao.mysql.DTO.PerfilEstudianteDTO;
+import dao.mysql.DTO.perfilExpertoDTO;
 import dao.mysql.UsuarioDAOImplMysql;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Publicacion;
+import model.Tutoria;
 import model.Usuario;
-
 
 /**
  *
@@ -51,40 +58,49 @@ public class ServletInicioSesion extends HttpServlet {
             sesion = request.getSession(true);
         }
 
-        // Obtener la lista de usuarios desde UsuarioDao
-        List<Usuario> lista = null;
-        DAOFactory factory=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-        UsuarioDAO usuarioDao=factory.createUsuarioDAO();
-        lista = usuarioDao.findAll();
+        DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+        UsuarioDAO usuarioDao = factory.createUsuarioDAO();
 
-        // Buscar el usuario coincidente en la lista
-        Usuario usuario = lista.stream()
-                .filter(u -> u.getEmail().equals(correo) && u.getPassword().equals(clave))
-                .findFirst()
-                .orElse(null);
+        System.out.println(correo);
+        System.out.println(clave);
+
+        Usuario usuario = usuarioDao.autentificar(correo, clave);
 
         if (usuario != null) {
             // Guardamos los datos del cliente en variables de sesión
+
             sesion.setAttribute("UsuarioCodigo", usuario.getId());
             sesion.setAttribute("UsuarioNombre", usuario.getNombres());
             sesion.setAttribute("UsuarioApellido", usuario.getApellidos());
             sesion.setAttribute("idCursoAux", -1);
             sesion.setAttribute("idExpertoAux", -1);
-            // Obtener el rol del usuario
-            // Obtener la lista de roles del usuario
-            List<String> roles = usuarioDao.obtenerNombreRolesUsuario(usuario.getId());
-            sesion.setAttribute("UsuarioRoles", roles);
 
-            if (roles.contains("Alumno")) {
-                direccion = "view/PrincipalUsuario.jsp";
-            } else if (roles.contains("Tutor")) {
-                sesion.setAttribute(clave, roles);
+            // Obtener el rol del usuario
+            if (usuario.getIdTipo() == 2) {
+                PublicacionDAO publicacionDAO=factory.createPublicacionDAO();
+                List<Publicacion> publicaciones=new ArrayList<>();
+                publicaciones=publicacionDAO.obtenerPublicacionesPorUsuario(usuario.getId());
+                perfilExpertoDTO perfilExpertoDTO=new perfilExpertoDTO();
+                perfilExpertoDTO.setUsuario(usuario);
+                perfilExpertoDTO.setPublicaciones(publicaciones);
+                perfilExpertoDTO.setUsuario(usuario);
+                request.setAttribute("perfilExperto", perfilExpertoDTO);
                 direccion = "view/PrincipalExperto.jsp";
+            } else if (usuario.getIdTipo() == 1) {
+                TutoriaDAO tutoriaDAO = factory.createTutoriaDAO();
+                List<Tutoria> tutorias=new ArrayList<>();
+                tutorias=tutoriaDAO.obtenerListaTutoriasXEstudiante(usuario.getId());
+                PerfilEstudianteDTO perfilEstudiante=new PerfilEstudianteDTO();
+                perfilEstudiante.setUsuario(usuario);
+                perfilEstudiante.setTurorias(tutorias);
+                request.setAttribute("perfilEstudiante", perfilEstudiante);
+                direccion = "view/PrincipalUsuario.jsp";
             }
         }
 
         // Redirigir a la dirección correspondiente
-        response.sendRedirect(direccion);
+        RequestDispatcher dispatcher = request.getRequestDispatcher(direccion);
+        dispatcher.forward(request, response);
 
     }
 

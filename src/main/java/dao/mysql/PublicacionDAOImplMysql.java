@@ -16,7 +16,11 @@ import model.Publicacion;
 
 /**
  *
+<<<<<<< HEAD
  * @author chibo
+=======
+ * @author orope
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
  */
 public class PublicacionDAOImplMysql extends PublicacionDAO {
 
@@ -29,6 +33,7 @@ public class PublicacionDAOImplMysql extends PublicacionDAO {
 
     @Override
     public List<Publicacion> findAll() {
+<<<<<<< HEAD
         Connection conn = conexionMysql.getConexion();
         PreparedStatement ps;
         ResultSet rs;
@@ -53,11 +58,31 @@ public class PublicacionDAOImplMysql extends PublicacionDAO {
         } finally {
         }
         return lista;
+=======
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
     }
 
     @Override
     public void save(Publicacion entity) {
+<<<<<<< HEAD
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+=======
+        Connection conn = conexionMysql.getConexion();
+        PreparedStatement stmt;
+        String query = "INSERT INTO `tutobox`.`publicacion` (`titulo`, `cuerpo`, `fecha`, `idCurso`, `idUsuario`) VALUES (?, ?, ?, ?, ?);";
+        try {
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, entity.getTitulo());
+            stmt.setString(2, entity.getCuerpo());
+            stmt.setString(3, entity.getFecha());
+            stmt.setInt(4, entity.getIdCurso());
+            stmt.setInt(5, entity.getIdUsuario());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error: No se pudo actualizar el usuario\n" + e.getMessage());
+        }
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
     }
 
     @Override
@@ -67,14 +92,31 @@ public class PublicacionDAOImplMysql extends PublicacionDAO {
 
     @Override
     public void delete(int id) {
+<<<<<<< HEAD
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+=======
+        Connection conn = conexionMysql.getConexion();
+        PreparedStatement stmt;
+        String query = "DELETE FROM `tutobox`.`publicacion` WHERE (`idPublicacion` = ?);";
+        try {
+            stmt = conn.prepareStatement(query);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error: No se pudo actualizar el usuario\n" + e.getMessage());
+        }
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
     }
 
     @Override
     public List<Publicacion> obtenerPublicacionesPorUsuario(int idUsuario) {
         Connection conn = conexionMysql.getConexion();
         PreparedStatement ps;
+<<<<<<< HEAD
         String query = "SELECT *, documento, idCurso, idUsuario FROM tutobox.publicacion WHERE idUsuario = ?;";
+=======
+        String query = "SELECT * FROM tutobox.publicacion WHERE idUsuario = ?;";
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
 
         List<Publicacion> publicaciones = new ArrayList<>();
 
@@ -88,6 +130,7 @@ public class PublicacionDAOImplMysql extends PublicacionDAO {
                 String titulo = rs.getString(2);
                 String cuerpo = rs.getString(3);
                 String fecha = rs.getString(4);
+<<<<<<< HEAD
                 int documento = rs.getInt(5);
                 int idCurso = rs.getInt(6);
                 Publicacion p = new Publicacion(id, titulo, cuerpo, fecha, documento, idCurso, idUsuario);
@@ -97,11 +140,22 @@ public class PublicacionDAOImplMysql extends PublicacionDAO {
             rs.close();
             ps.close();
             conn.close();
+=======
+                //int documento = rs.getInt(5);
+                int idCurso = rs.getInt(6);
+                Publicacion p = new Publicacion(id, titulo, cuerpo, fecha, 1, idCurso, idUsuario);
+                publicaciones.add(p);
+            }
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
         } catch (SQLException e) {
             System.out.println("Error: No se pudieron obtener las publicaciones\n" + e.getMessage());
         }
 
         return publicaciones;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
     }
 
 }

@@ -4,7 +4,9 @@
  */
 package controller;
 
+import dao.CursoDAO;
 import dao.DAOFactory;
+<<<<<<< HEAD
 import dao.MensajeDAO;
 import dao.PublicacionDAO;
 import dao.TutoriaDAO;
@@ -13,6 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Mensaje;
 import model.Publicacion;
+=======
+import dao.PublicacionDAO;
+import dao.TipoUsuarioDAO;
+import dao.TutoriaDAO;
+import dao.UsuarioDAO;
+import dao.mysql.UsuarioDAOImplMysql;
+import java.util.List;
+import model.Publicacion;
+import model.TipoUsuario;
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
 import model.Tutoria;
 import model.Usuario;
 
@@ -23,6 +35,7 @@ import model.Usuario;
 public class test {
     
     public static void main(String args[]){
+<<<<<<< HEAD
 //      System.out.println("hola");
 //      List<Usuario> lista = null;
         String nombre = "";
@@ -39,4 +52,34 @@ public class test {
         nombre = usuarioDAO.obtenerNombrePorUsuarioId(1);
         System.out.println(nombre);
     }
+=======
+//        System.out.println("hola");
+        List<TipoUsuario> lista = null;
+
+        DAOFactory factory=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+        TipoUsuarioDAO tipoUsuarioDAO=factory.createTipoUsuarioDAO();
+//        String nombre=cursoDAO.NombreCurso(1);
+//        System.out.println("holaaaaaaaaaa" + nombre);
+        lista=tipoUsuarioDAO.findAll();
+        
+        for (int i = 0; i < lista.size(); i++) {
+            System.out.println(lista.get(i).getDescripcion());
+        }
+        
+//        Usuario u=usuarioDao.autentificar("juan@example.com", "123456");
+//        System.out.println("hola");
+//        System.out.println(u);
+//        if (u!=null) {
+//            System.out.println(u.getNombres());
+//        }
+//        lista = usuarioDao.findAll();
+//        
+//        Usuario u= new Usuario("brayan", "oropeza", "email", "2324", 1);
+//        UsuarioDAO usudao=new UsuarioDAOImplMysql();
+//        usudao.save(u);
+//        usuarioDao.obtenerNombreRolesUsuario(6);
+    }
+    
+
+>>>>>>> 3a2fa535a6fb3c7c867c2a6472b12271be176d89
 }
