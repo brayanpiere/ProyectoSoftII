@@ -5,8 +5,15 @@
 package controller;
 
 import dao.DAOFactory;
+import dao.MensajeDAO;
+import dao.PublicacionDAO;
+import dao.TutoriaDAO;
 import dao.UsuarioDAO;
+import java.util.ArrayList;
 import java.util.List;
+import model.Mensaje;
+import model.Publicacion;
+import model.Tutoria;
 import model.Usuario;
 
 /**
@@ -16,12 +23,20 @@ import model.Usuario;
 public class test {
     
     public static void main(String args[]){
-        System.out.println("hola");
-        List<Usuario> lista = null;
+//      System.out.println("hola");
+//      List<Usuario> lista = null;
+        String nombre = "";
+//      Mensaje c = new Mensaje(0, "ayuda", "hola", "2023-06-16", 3, 8);
         DAOFactory factory=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-        UsuarioDAO usuarioDao=factory.createUsuarioDAO();
-        lista = usuarioDao.findAll();
-//        usuarioDao.obtenerNombreRolesUsuario(6);
+        UsuarioDAO usuarioDAO=factory.createUsuarioDAO();
+//      u = usuarioDAO.obtenerNombrePorUsuarioId(1);
+//      mensajeDAO.save(c);
+//      u = publicacionDao.findAll();
+//      for (int i = 0; i < u.size();i++){
+//          System.out.println(u.get(i).getTitulo());
+//      }
+//      lista = usuarioDao.findAll();
+        nombre = usuarioDAO.obtenerNombrePorUsuarioId(1);
+        System.out.println(nombre);
     }
-    
 }

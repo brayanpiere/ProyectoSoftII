@@ -55,7 +55,22 @@ public class UsuarioDAOImplMysql extends UsuarioDAO {
 
     @Override
     public void update(Usuario entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    Connection conn = conexionMysql.getConexion();
+    PreparedStatement ps;
+    String query = "UPDATE `tutobox`.`usuario` SET `nombre` = ?, `apellidos` = ?, `correo` = ?, `idTipo` = ? WHERE (`idUsuario` = ?)";
+
+    try {
+        ps = conn.prepareStatement(query);
+        ps.setString(1, entity.getNombres());
+        ps.setString(2, entity.getApellidos());
+        ps.setString(3, entity.getEmail());
+        ps.setInt(4, entity.getIdTipo());
+        ps.setInt(5, entity.getId());
+
+        ps.executeUpdate();
+    } catch (SQLException e) {
+        System.out.println("Error: No se pudo actualizar el usuario\n" + e.getMessage());
+    }
     }
 
     @Override
@@ -98,6 +113,32 @@ public class UsuarioDAOImplMysql extends UsuarioDAO {
     @Override
     public void delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String obtenerNombrePorUsuarioId(int usuarioId) {
+        Connection conn = conexionMysql.getConexion();
+        PreparedStatement ps;
+        String query = "SELECT nombre, apellidos FROM tutobox.usuario WHERE idUsuario = ?;";
+
+        String nombreApellido = "";
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, usuarioId);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String Nombre = rs.getString("nombre");
+                String Apellido = rs.getString("apellidos");
+                nombreApellido = Nombre +" "+ Apellido;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: No se pudo obtener el nombre y apellido del usuario\n" + e.getMessage());
+        }
+
+        return nombreApellido;
     }
 
 }

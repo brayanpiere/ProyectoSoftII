@@ -28,7 +28,13 @@ public abstract class DAOFactory {
     }
 
     public abstract UsuarioDAO createUsuarioDAO();
+    
+    public abstract PublicacionDAO createPublicacionDAO();
 
     public abstract RolDAO createRolDAO();
+    
+    public abstract MensajeDAO createMensajeDAO();
+
+    public abstract TutoriaDAO createTutoriaDAO();
 
 }

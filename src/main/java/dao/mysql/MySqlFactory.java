@@ -5,7 +5,10 @@
 package dao.mysql;
 
 import dao.DAOFactory;
+import dao.MensajeDAO;
+import dao.PublicacionDAO;
 import dao.RolDAO;
+import dao.TutoriaDAO;
 import dao.UsuarioDAO;
 
 /**
@@ -22,6 +25,21 @@ public class MySqlFactory extends DAOFactory{
     @Override
     public RolDAO createRolDAO() {
         return new RolDAOImplMysql();
+    }
+
+    @Override
+    public PublicacionDAO createPublicacionDAO() {
+        return new PublicacionDAOImplMysql();
+    }
+
+    @Override
+    public MensajeDAO createMensajeDAO() {
+        return new MensajeDAOImplMysql();
+    }
+
+    @Override
+    public TutoriaDAO createTutoriaDAO() {
+        return new TutoriaDAOImplMysql();
     }
     
 }

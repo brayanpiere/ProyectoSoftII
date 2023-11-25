@@ -23,7 +23,7 @@ public class ConexionMysql implements Conexion {
     private ConexionMysql() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tutobox", "root", "admin");
+            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tutobox", "root", "Cesar_08_02");
             System.out.println("Conexion Satisfactoria :)");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error de Conexión\n" + e);

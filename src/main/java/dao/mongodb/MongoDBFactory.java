@@ -5,7 +5,10 @@
 package dao.mongodb;
 
 import dao.DAOFactory;
+import dao.MensajeDAO;
+import dao.PublicacionDAO;
 import dao.RolDAO;
+import dao.TutoriaDAO;
 import dao.UsuarioDAO;
 
 /**
@@ -21,6 +24,21 @@ public class MongoDBFactory extends DAOFactory{
 
     @Override
     public RolDAO createRolDAO() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public PublicacionDAO createPublicacionDAO() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public MensajeDAO createMensajeDAO() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public TutoriaDAO createTutoriaDAO() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

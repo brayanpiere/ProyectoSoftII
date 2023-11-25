@@ -5,14 +5,13 @@
 package dao;
 
 import java.util.List;
-import model.Usuario;
+import model.Tutoria;
 
 /**
  *
- * @author orope
+ * @author chibo
  */
-public abstract class UsuarioDAO implements CRUD<Usuario>{
-
-    public abstract List<String> obtenerNombreRolesUsuario(int usuarioId);
-    public abstract String obtenerNombrePorUsuarioId(int usuarioId);
+public abstract class TutoriaDAO implements CRUD<Tutoria>{
+    
+    public abstract List<Tutoria> obtenerTutoriasPorEstudiante(int idEstudiante);
 }
